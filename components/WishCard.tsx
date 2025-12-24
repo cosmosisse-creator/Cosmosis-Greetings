@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { GeneratedWish } from '../types';
+import { GeneratedWish } from '../types.ts';
 import { Copy, Sparkles, Check, Send } from 'lucide-react';
 
 interface WishCardProps {

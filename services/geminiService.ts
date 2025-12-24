@@ -1,9 +1,10 @@
 
 import { GoogleGenAI, Type } from "@google/genai";
-import { GeneratedWish } from "../types";
+import { GeneratedWish } from "../types.ts";
 
 export const generateWish = async (): Promise<GeneratedWish> => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || "" });
+  const apiKey = (typeof process !== 'undefined' && process.env) ? process.env.API_KEY : '';
+  const ai = new GoogleGenAI({ apiKey: apiKey || "" });
   
   const prompt = `You are the creative director at "Cosmosis", a high-end media agency. 
   Write a sophisticated, poetic, and professional seasonal greeting for our valued clients.

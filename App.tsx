@@ -1,10 +1,10 @@
 
 import React, { useState } from 'react';
 import { Sparkles, Wand2 } from 'lucide-react';
-import BackgroundEffect from './components/BackgroundEffect';
-import WishCard from './components/WishCard';
-import { generateWish } from './services/geminiService';
-import { GeneratedWish } from './types';
+import BackgroundEffect from './components/BackgroundEffect.tsx';
+import WishCard from './components/WishCard.tsx';
+import { generateWish } from './services/geminiService.ts';
+import { GeneratedWish } from './types.ts';
 
 const LOGO_URL = "https://cosmosis.se/wp-content/uploads/2025/12/Asset-6-scaled.png";
 
