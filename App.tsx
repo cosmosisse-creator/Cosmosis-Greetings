@@ -17,9 +17,14 @@ const App: React.FC = () => {
     try {
       const result = await generateWish();
       setWish(result);
-    } catch (error) {
-      console.error("Failed to generate wish:", error);
-      alert("The stars are currently misaligned. Please try again.");
+    } catch (error: any) {
+      console.error("Cosmosis App Error:", error);
+      // More descriptive error for common issues
+      if (error.message?.includes("API_KEY") || error.status === 403 || error.status === 401) {
+        alert("The agency's API Key is missing or invalid. Please check your project settings.");
+      } else {
+        alert("The stars are currently misaligned. Please try again or check the console for details.");
+      }
     } finally {
       setLoading(false);
     }
