@@ -18,12 +18,21 @@ const App: React.FC = () => {
       const result = await generateWish();
       setWish(result);
     } catch (error: any) {
-      console.error("Cosmosis App Error:", error);
-      // More descriptive error for common issues
-      if (error.message?.includes("API_KEY") || error.status === 403 || error.status === 401) {
-        alert("The agency's API Key is missing or invalid. Please check your project settings.");
+      console.error("Cosmosis App Detailed Error:", error);
+      
+      const errorMessage = error.message || String(error);
+      
+      // Check for API Key issues specifically
+      if (
+        errorMessage.toLowerCase().includes("api key") || 
+        errorMessage.toLowerCase().includes("api_key") ||
+        error.status === 403 || 
+        error.status === 401
+      ) {
+        alert("⚠️ API KEY ERROR: Your Gemini API Key is missing or invalid. \n\nDouble-check that you added 'API_KEY' to your Vercel Environment Variables and redeployed.");
       } else {
-        alert("The stars are currently misaligned. Please try again or check the console for details.");
+        // Show the actual error to the user so they can report it
+        alert(`🌌 COSMIC INTERVENTION: \n${errorMessage}\n\nCheck the browser console (Right click > Inspect > Console) for technical details.`);
       }
     } finally {
       setLoading(false);
